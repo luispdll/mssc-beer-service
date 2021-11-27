@@ -20,7 +20,7 @@ public class BeerController {
     @PostMapping
     public ResponseEntity<HttpStatus> handleSaveNewBeer(@RequestBody BeerDto beerDto) {
         // todo
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping("/{beerId}")
