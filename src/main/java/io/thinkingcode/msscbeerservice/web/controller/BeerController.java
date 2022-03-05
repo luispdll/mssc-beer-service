@@ -3,6 +3,7 @@ package io.thinkingcode.msscbeerservice.web.controller;
 import io.thinkingcode.msscbeerservice.web.model.BeerDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -18,13 +19,13 @@ public class BeerController {
     }
 
     @PostMapping
-    public ResponseEntity<HttpStatus> handleSaveNewBeer(@RequestBody BeerDto beerDto) {
+    public ResponseEntity<HttpStatus> handleSaveNewBeer(@RequestBody @Validated BeerDto beerDto) {
         // todo
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping("/{beerId}")
-    public ResponseEntity<HttpStatus> handleUpdateBeerById(@RequestBody BeerDto beerDto) {
+    public ResponseEntity<HttpStatus> handleUpdateBeerById(@PathVariable("beerId") UUID beerId, @RequestBody @Validated BeerDto beerDto) {
         // todo
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
