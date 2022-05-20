@@ -2,6 +2,7 @@ package io.thinkingcode.msscbeerservice.services;
 
 import io.thinkingcode.msscbeerservice.domain.Beer;
 import io.thinkingcode.msscbeerservice.repositories.BeerRepository;
+import io.thinkingcode.msscbeerservice.web.controller.NotFoundException;
 import io.thinkingcode.msscbeerservice.web.mappers.BeerMapper;
 import io.thinkingcode.msscbeerservice.web.model.BeerDto;
 import lombok.RequiredArgsConstructor;
