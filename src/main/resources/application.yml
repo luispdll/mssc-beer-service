@@ -8,6 +8,14 @@ sfg:
     inventory-password: beer
 
 spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=MYSQL
   cache:
     jcache:
       config: classpath:ehcache.xml
+  h2:
+    console:
+      enabled: true
+  artemis:
+    user: artemis
+    password: simetraehcapa
