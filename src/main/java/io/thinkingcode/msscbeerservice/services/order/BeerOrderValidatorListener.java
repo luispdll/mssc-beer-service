@@ -1,6 +1,11 @@
 package io.thinkingcode.msscbeerservice.services.order;
 
+import io.thinkingcode.msscbeerservice.config.JmsConfig;
+import io.thinkingcode.msscbeerservice.common.events.ValidateOrderRequest;
+import io.thinkingcode.msscbeerservice.common.events.ValidateOrderResult;
 import lombok.RequiredArgsConstructor;
+import org.springframework.jms.annotation.JmsListener;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor

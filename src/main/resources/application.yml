@@ -19,3 +19,7 @@ spring:
   artemis:
     user: artemis
     password: simetraehcapa
+
+logging:
+  level:
+    io.thinkingcode: debug

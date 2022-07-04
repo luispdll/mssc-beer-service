@@ -1,9 +1,9 @@
 package io.thinkingcode.msscbeerservice.web.controller;
 
+import io.thinkingcode.msscbeerservice.common.BeerDTO;
+import io.thinkingcode.msscbeerservice.common.BeerPagedList;
+import io.thinkingcode.msscbeerservice.common.BeerStyleEnum;
 import io.thinkingcode.msscbeerservice.services.BeerService;
-import io.thinkingcode.msscbeerservice.web.model.BeerDto;
-import io.thinkingcode.msscbeerservice.web.model.BeerPagedList;
-import io.thinkingcode.msscbeerservice.web.model.BeerStyleEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -42,7 +42,7 @@ public class BeerController {
     }
 
     @GetMapping("/{beerId}")
-    public ResponseEntity<BeerDto> handleGetBeerById(@PathVariable("beerId") UUID beerId,
+    public ResponseEntity<BeerDTO> handleGetBeerById(@PathVariable("beerId") UUID beerId,
                                                      @RequestParam(required = false) Boolean showInventoryOnHand) {
         if (showInventoryOnHand == null) {
             showInventoryOnHand = false;
@@ -54,21 +54,21 @@ public class BeerController {
     }
 
     @PostMapping
-    public ResponseEntity<BeerDto> handleSaveNewBeer(@RequestBody @Validated BeerDto beerDto) {
+    public ResponseEntity<BeerDTO> handleSaveNewBeer(@RequestBody @Validated BeerDTO beerDto) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(beerService.saveNewBeer(beerDto));
     }
 
     @PutMapping("/{beerId}")
-    public ResponseEntity<BeerDto> handleUpdateBeerById(@PathVariable("beerId") UUID beerId, @RequestBody @Validated BeerDto beerDto) {
+    public ResponseEntity<BeerDTO> handleUpdateBeerById(@PathVariable("beerId") UUID beerId, @RequestBody @Validated BeerDTO beerDto) {
         return ResponseEntity
                 .status(HttpStatus.NO_CONTENT)
                 .body(beerService.updateBeer(beerId, beerDto));
     }
 
     @GetMapping("beerUpc/{upc}")
-    public ResponseEntity<BeerDto> getBeerByUpc(@PathVariable("upc") String upc){
+    public ResponseEntity<BeerDTO> getBeerByUpc(@PathVariable("upc") String upc){
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(beerService.getByUpc(upc));

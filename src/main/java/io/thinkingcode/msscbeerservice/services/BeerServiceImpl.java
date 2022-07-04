@@ -1,13 +1,13 @@
 package io.thinkingcode.msscbeerservice.services;
 
 import io.micrometer.core.instrument.util.StringUtils;
+import io.thinkingcode.msscbeerservice.common.BeerDTO;
+import io.thinkingcode.msscbeerservice.common.BeerPagedList;
+import io.thinkingcode.msscbeerservice.common.BeerStyleEnum;
 import io.thinkingcode.msscbeerservice.domain.Beer;
 import io.thinkingcode.msscbeerservice.repositories.BeerRepository;
 import io.thinkingcode.msscbeerservice.web.controller.NotFoundException;
 import io.thinkingcode.msscbeerservice.web.mappers.BeerMapper;
-import io.thinkingcode.msscbeerservice.web.model.BeerDto;
-import io.thinkingcode.msscbeerservice.web.model.BeerPagedList;
-import io.thinkingcode.msscbeerservice.web.model.BeerStyleEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
@@ -69,7 +69,7 @@ public class BeerServiceImpl implements BeerService{
     }
 
     @Override
-    public BeerDto getById(UUID beerId, Boolean showInventoryOnHand) {
+    public BeerDTO getById(UUID beerId, Boolean showInventoryOnHand) {
         if (showInventoryOnHand) {
             return beerMapper.beerToBeerDtoWithInventory(
                     beerRepository.findById(beerId).orElseThrow(NotFoundException::new)
@@ -82,18 +82,18 @@ public class BeerServiceImpl implements BeerService{
     }
 
     @Override
-    public BeerDto saveNewBeer(BeerDto beerDto) {
+    public BeerDTO saveNewBeer(BeerDTO beerDto) {
         return beerMapper.beerToBeerDto(
                 beerRepository.save(beerMapper.beerDtoToBeer(beerDto))
         );
     }
 
     @Override
-    public BeerDto updateBeer(UUID beerId, BeerDto beerDto) {
+    public BeerDTO updateBeer(UUID beerId, BeerDTO beerDto) {
         Beer beer = beerRepository.findById(beerId).orElseThrow(NotFoundException::new);
 
         beer.setBeerName(beerDto.getBeerName());
-        beer.setBeerStyle(beerDto.getBeerStyle().name());
+        beer.setBeerStyle(beerDto.getBeerStyle());
         beer.setPrice(beerDto.getPrice());
         beer.setUpc(beerDto.getUpc());
 
@@ -103,7 +103,7 @@ public class BeerServiceImpl implements BeerService{
     }
 
     @Override
-    public BeerDto getByUpc(String upc) {
+    public BeerDTO getByUpc(String upc) {
         return beerRepository.findByUpc(upc)
                 .map(beerMapper::beerToBeerDto)
                 .orElseThrow(NotFoundException::new);

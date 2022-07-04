@@ -1,13 +1,15 @@
 package io.thinkingcode.msscbeerservice.services.brewing;
 
+import io.thinkingcode.msscbeerservice.common.BeerDTO;
 import io.thinkingcode.msscbeerservice.config.JmsConfig;
 import io.thinkingcode.msscbeerservice.domain.Beer;
 import io.thinkingcode.msscbeerservice.repositories.BeerRepository;
-import io.thinkingcode.msscbeerservice.web.model.BeerDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import model.events.BrewBeerEvent;
-import model.events.NewInventoryEvent;
+import io.thinkingcode.msscbeerservice.common.events.BrewBeerEvent;
+import io.thinkingcode.msscbeerservice.common.events.NewInventoryEvent;
+import org.springframework.jms.annotation.JmsListener;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,10 +24,11 @@ public class BrewBeerListener {
     @Transactional
     @JmsListener(destination = JmsConfig.BREWING_REQUEST_QUEUE)
     public void listen(BrewBeerEvent event){
-        BeerDto beerDto = event.getBeerDto();
+        BeerDTO beerDto = event.getBeerDto();
 
         Beer beer = beerRepository.findById(beerDto.getId()).orElse(null);
 
+        assert beer != null;
         beerDto.setQuantityOnHand(beer.getQuantityToBrew());
 
         NewInventoryEvent newInventoryEvent = new NewInventoryEvent(beerDto);

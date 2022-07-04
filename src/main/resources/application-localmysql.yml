@@ -26,8 +26,8 @@ spring:
         format_sql: true
         dialect: org.hibernate.dialect.MySQL8Dialect
 
-logging:
-  level:
-    org.hibernate.SQL: DEBUG
-    com.zaxxer.hikari.HikariConfig: DEBUG
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+#logging:
+ # level:
+  #  org.hibernate.SQL: DEBUG
+   # com.zaxxer.hikari.HikariConfig: DEBUG
+    #org.hibernate.type.descriptor.sql.BasicBinder: TRACE

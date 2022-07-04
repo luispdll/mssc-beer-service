@@ -1,5 +1,7 @@
-package model;
+package io.thinkingcode.msscbeerservice.common.events;
 
+import io.thinkingcode.msscbeerservice.common.Others.BaseItem;
+import io.thinkingcode.msscbeerservice.common.Others.OrderStatusEnum;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

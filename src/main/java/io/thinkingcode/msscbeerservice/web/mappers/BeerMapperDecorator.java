@@ -1,8 +1,8 @@
 package io.thinkingcode.msscbeerservice.web.mappers;
 
+import io.thinkingcode.msscbeerservice.common.BeerDTO;
 import io.thinkingcode.msscbeerservice.domain.Beer;
 import io.thinkingcode.msscbeerservice.services.inventory.BeerInventoryService;
-import io.thinkingcode.msscbeerservice.web.model.BeerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class BeerMapperDecorator implements BeerMapper {
@@ -21,19 +21,19 @@ public abstract class BeerMapperDecorator implements BeerMapper {
     }
 
     @Override
-    public BeerDto beerToBeerDto(Beer beer) {
+    public BeerDTO beerToBeerDto(Beer beer) {
         return mapper.beerToBeerDto(beer);
     }
 
     @Override
-    public BeerDto beerToBeerDtoWithInventory(Beer beer) {
-        BeerDto dto = mapper.beerToBeerDto(beer);
+    public BeerDTO beerToBeerDtoWithInventory(Beer beer) {
+        BeerDTO dto = mapper.beerToBeerDto(beer);
         dto.setQuantityOnHand(beerInventoryService.getOnhandInventory(beer.getId()));
         return dto;
     }
 
     @Override
-    public Beer beerDtoToBeer(BeerDto beerDto) {
+    public Beer beerDtoToBeer(BeerDTO beerDto) {
         return mapper.beerDtoToBeer(beerDto);
     }
 }

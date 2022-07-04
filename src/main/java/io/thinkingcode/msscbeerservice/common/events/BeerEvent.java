@@ -1,6 +1,6 @@
-package model.events;
+package io.thinkingcode.msscbeerservice.common.events;
 
-import io.thinkingcode.msscbeerservice.web.model.BeerDto;
+import io.thinkingcode.msscbeerservice.common.BeerDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,5 +16,5 @@ public class BeerEvent implements Serializable {
 
     static final long serialVersionUID = -5781515597148163111L;
 
-    private BeerDto beerDto;
+    private BeerDTO beerDto;
 }

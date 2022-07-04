@@ -3,7 +3,7 @@ package io.thinkingcode.msscbeerservice.services.order;
 import io.thinkingcode.msscbeerservice.repositories.BeerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import model.BeerOrderDTO;
+import io.thinkingcode.msscbeerservice.common.events.BeerOrderDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.atomic.AtomicInteger;

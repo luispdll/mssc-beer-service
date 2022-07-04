@@ -2,11 +2,10 @@ package io.thinkingcode.msscbeerservice.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.thinkingcode.msscbeerservice.bootstrap.BeerLoader;
+import io.thinkingcode.msscbeerservice.common.BeerDTO;
+import io.thinkingcode.msscbeerservice.common.BeerStyleEnum;
 import io.thinkingcode.msscbeerservice.services.BeerService;
-import io.thinkingcode.msscbeerservice.web.model.BeerDto;
-import io.thinkingcode.msscbeerservice.web.model.BeerStyleEnum;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -46,7 +45,7 @@ class BeerControllerTest {
     void handleSaveNewBeer() throws Exception {
         given(beerService.saveNewBeer(any())).willReturn(getValidBeerDto());
 
-        BeerDto beerDto = getValidBeerDto();
+        BeerDTO beerDto = getValidBeerDto();
         String beerDtoJson = objectMapper.writeValueAsString(beerDto);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/beer")
@@ -59,7 +58,7 @@ class BeerControllerTest {
     void handleUpdateBeerById() throws Exception {
         given(beerService.updateBeer(any(), any())).willReturn(getValidBeerDto());
 
-        BeerDto beerDto = getValidBeerDto();
+        BeerDTO beerDto = getValidBeerDto();
         String beerDtoJson = objectMapper.writeValueAsString(beerDto);
 
         mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/beer/" + UUID.randomUUID().toString())
@@ -68,10 +67,10 @@ class BeerControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isNoContent());
     }
 
-    BeerDto getValidBeerDto() {
-        return BeerDto.builder()
+    BeerDTO getValidBeerDto() {
+        return BeerDTO.builder()
                 .beerName("Victoria")
-                .beerStyle(BeerStyleEnum.ALE)
+                .beerStyle(String.valueOf(BeerStyleEnum.ALE))
                 .price(new BigDecimal("2.90"))
                 .upc(BeerLoader.BEER_1_UPC)
                 .build();

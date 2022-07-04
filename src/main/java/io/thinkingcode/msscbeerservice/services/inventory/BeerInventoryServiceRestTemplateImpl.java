@@ -1,6 +1,5 @@
 package io.thinkingcode.msscbeerservice.services.inventory;
 
-import io.thinkingcode.msscbeerservice.services.inventory.BeerInventoryService;
 import io.thinkingcode.msscbeerservice.services.inventory.model.BeerInventoryDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

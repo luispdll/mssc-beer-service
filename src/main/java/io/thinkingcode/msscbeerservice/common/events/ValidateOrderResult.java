@@ -1,4 +1,4 @@
-package model.events;
+package io.thinkingcode.msscbeerservice.common.events;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

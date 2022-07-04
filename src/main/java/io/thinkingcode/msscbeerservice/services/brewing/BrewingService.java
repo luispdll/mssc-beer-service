@@ -1,11 +1,14 @@
 package io.thinkingcode.msscbeerservice.services.brewing;
 
+import io.thinkingcode.msscbeerservice.config.JmsConfig;
 import io.thinkingcode.msscbeerservice.domain.Beer;
+import io.thinkingcode.msscbeerservice.common.events.BrewBeerEvent;
 import io.thinkingcode.msscbeerservice.repositories.BeerRepository;
 import io.thinkingcode.msscbeerservice.services.inventory.BeerInventoryService;
 import io.thinkingcode.msscbeerservice.web.mappers.BeerMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +18,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class BrewingService {
+
     private final BeerRepository beerRepository;
     private final BeerInventoryService beerInventoryService;
     private final JmsTemplate jmsTemplate;
