@@ -8,6 +8,8 @@ sfg:
     inventory-password: beer
 
 spring:
+  application:
+    name: beer-service
   datasource:
     url: jdbc:h2:mem:testdb;MODE=MYSQL
   cache:
