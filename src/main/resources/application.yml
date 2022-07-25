@@ -21,6 +21,9 @@ spring:
   artemis:
     user: artemis
     password: simetraehcapa
+  sql:
+    init:
+      mode: embedded
 
 logging:
   level:
