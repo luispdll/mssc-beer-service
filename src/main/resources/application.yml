@@ -4,8 +4,8 @@ server:
 sfg:
   brewery:
     beer-inventory-service-host: http://localhost:8082
-    inventory-user: good
-    inventory-password: beer
+    inventory-user: user
+    inventory-password: password
 
 spring:
   application:
